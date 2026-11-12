@@ -233,6 +233,9 @@ dialog>.primary{width:100%;margin-top:18px}
 @media(max-width:1050px){.site-nav{margin-left:10px;padding-left:8px}.nav-item{font-size:12px;padding:8px}.mouse-layout{grid-template-columns:217px minmax(0,1fr);gap:14px}.mouse-hero h1{font-size:40px}}
 @media(max-width:820px){.header-inner{flex-wrap:wrap}.site-nav{order:3;width:100%;border:0;margin:0;padding:0 0 9px;justify-content:center}.nav-item{flex:1}.mouse-layout{grid-template-columns:1fr}.mouse-games{grid-template-columns:1fr 1fr}.mouse-mode{margin-top:12px;padding-top:12px}.mode-choices{grid-template-columns:1fr 1fr}.forest-note{margin-top:12px}.mouse-hero{padding:23px;min-height:142px}.mouse-hero-art{right:3%;font-size:70px}.mouse-hero-copy{max-width:65%}}
 @media(max-width:600px){.mouse-hero{border-radius:15px;min-height:125px;padding:18px}.mouse-hero h1{font-size:30px}.mouse-hero-copy>p:last-child{font-size:12px}.mouse-eyebrow{font-size:9px}.mouse-hero-art{font-size:50px;right:2%;gap:0}.mouse-hero-art span:nth-child(2){font-size:40px}.mouse-hero-art span:last-child{font-size:25px}.mouse-layout{margin-top:10px;gap:10px}.mouse-settings{padding:13px}.game-choice{min-height:49px;padding:7px;gap:6px}.game-choice small{font-size:10px}.game-icon{width:30px;height:30px;font-size:19px}.game-choice b{font-size:14px}.mouse-main{padding:15px 12px}.mouse-heading h2{font-size:20px}.mouse-start{font-size:12px;padding:9px}.mouse-instruction{font-size:12px}.game-field{height:260px;margin-top:14px}.target{width:64px;height:64px}.animal{width:120px;height:120px;font-size:65px}.stat-card{padding:10px 8px}.stat-card span{font-size:10px}.stat-card strong{font-size:17px}}
+#badges-open,#motion-toggle{padding:0 10px;font-size:12px}.badge-intro{margin:10px 0;color:#61715f;font-size:14px}.badge-list{display:grid;gap:8px;margin-top:15px}.badge-card{display:flex;gap:10px;align-items:center;background:#f3f7ed;border:1px solid #dce8d6;border-radius:10px;padding:10px}.badge-card>span{font-size:23px}.badge-card div{display:grid;gap:3px}.badge-card strong{font-size:14px}.badge-card small{font-size:12px;color:#607060}.target.small-target{width:48px;height:48px}.reduce-motion *, .reduce-motion *:before,.reduce-motion *:after{animation:none!important;transition:none!important}
+.hands-help{text-align:center;margin-top:15px;padding:12px 10px;background:#f5f8ee;border:1px solid #dfe9d8;border-radius:12px;color:#426447;font-size:14px;font-weight:600}.hands-pair{display:flex;justify-content:center;gap:25px;margin-top:12px}.hand{position:relative;width:165px;height:102px;display:flex;align-items:flex-end;gap:3px;padding:0 4px 26px}.hand:before{content:"";position:absolute;bottom:25px;left:12px;right:12px;height:38px;border-radius:13px 13px 22px 22px;background:#efcda9;border:1px solid #d7ae88}.hand i{position:relative;z-index:1;display:block;flex:1;height:55px;border-radius:14px 14px 7px 7px;background:#efcda9;border:1px solid #d7ae88}.hand i:nth-child(2),.hand i:nth-child(4){height:66px}.hand i:nth-child(3){height:72px}.hand i[data-finger$="thumb"]{height:37px}.hand i.finger-active{background:#7aaf70;border-color:#4e8b52;box-shadow:0 0 0 3px #cbe7be}.hand b{position:absolute;bottom:0;left:0;right:0;font-size:12px;color:#718071}.hands-help p{margin:0}.hands-help[hidden]{display:none}
+@media(max-width:600px){.hands-pair{gap:5px}.hand{width:130px;height:89px}.hand i{height:45px}.hand i:nth-child(2),.hand i:nth-child(4){height:54px}.hand i:nth-child(3){height:60px}}
 </style>
 </head>
 <body>
@@ -299,7 +302,7 @@ dialog>.primary{width:100%;margin-top:18px}
         <button type="button" class="nav-item" data-page="mouse">Тренажёр мыши</button>
       </nav>
       <div class="tools">
-        <span class="stars" id="stars" title="Звёзды за завершённые упражнения"><svg class="pixel"><use href="#star"/></svg><span id="star-count">0 звёзд</span></span>
+        <button type="button" class="tool" id="badges-open">🏅 Значки</button><button type="button" class="tool" id="motion-toggle" aria-pressed="false">Анимация</button><span class="stars" id="stars" title="Звёзды за завершённые упражнения"><svg class="pixel"><use href="#star"/></svg><span id="star-count">0 звёзд</span></span>
         <button class="tool sound-button" id="sound" type="button" aria-pressed="false" aria-label="Включить звук" title="Включить звук"><svg class="line"><use id="sound-icon" href="#sound-off"/></svg></button>
         <button class="tool help-button" id="open-help" type="button" aria-label="Как играть"><svg class="line"><use href="#help"/></svg><span>Как играть</span></button>
       </div>
@@ -327,6 +330,7 @@ dialog>.primary{width:100%;margin-top:18px}
             </button>
           </div>
         </section>
+        <section class="row-section" id="letter-display"><h2>Как печатать буквы</h2><div class="row-options"><button class="row-choice selected" type="button" data-display="one" aria-pressed="true">Найди букву</button><button class="row-choice" type="button" data-display="chain" aria-pressed="false">Цепочка букв</button></div></section>
         <section class="row-section">
           <h2 id="rows-title">Ряд клавиатуры</h2>
           <div class="row-options" role="group" aria-labelledby="rows-title">
@@ -360,10 +364,10 @@ dialog>.primary{width:100%;margin-top:18px}
         <section class="keyboard-panel panel" aria-labelledby="keyboard-title">
           <div class="panel-heading keyboard-heading">
             <h2 id="keyboard-title"><svg class="line title-icon"><use href="#icon-keyboard"/></svg>Клавиатура</h2>
-            <span class="key-legend"><i></i>Нужная клавиша</span>
+            <button type="button" class="reset" id="hands-toggle" aria-pressed="false">Показать руки</button>
           </div>
           <div class="keyboard" id="keyboard" role="group" aria-label="Экранная русская клавиатура"></div>
-          <p class="keyboard-note">Печатай на клавиатуре компьютера.</p>
+          <div class="hands-help" id="hands-help" hidden><p id="finger-label" aria-live="polite"></p><div class="hands-pair" aria-hidden="true"><div class="hand left-hand"><i data-finger="left-little"></i><i data-finger="left-ring"></i><i data-finger="left-middle"></i><i data-finger="left-index"></i><i data-finger="left-thumb"></i><b>Левая рука</b></div><div class="hand right-hand"><i data-finger="right-thumb"></i><i data-finger="right-index"></i><i data-finger="right-middle"></i><i data-finger="right-ring"></i><i data-finger="right-little"></i><b>Правая рука</b></div></div></div><p class="keyboard-note">Печатай на клавиатуре компьютера.</p>
         </section>
       </div>
     </div>
@@ -380,6 +384,7 @@ dialog>.primary{width:100%;margin-top:18px}
           <button type="button" class="game-choice active" data-game="targets" aria-pressed="true"><span class="game-icon target-icon">🎯</span><span><b>Мишени</b><small>Проверь меткость</small></span></button>
           <button type="button" class="game-choice" data-game="reaction" aria-pressed="false"><span class="game-icon reaction-icon">⚡</span><span><b>Реакция</b><small>Поймай зверька</small></span></button>
         </div>
+        <div class="mouse-mode" id="target-sizes"><h3>Размер мишени</h3><div class="mode-choices"><button type="button" class="mode-choice active" data-size="large">Крупные</button><button type="button" class="mode-choice" data-size="small">Маленькие</button></div></div>
         <div class="mouse-mode" id="target-modes"><h3>Режим игры</h3>
           <div class="mode-choices" role="group" aria-label="Режим игры">
             <button type="button" class="mode-choice active" data-target-mode="time" aria-pressed="true"><b>На время</b><span>30 секунд</span></button>
@@ -411,6 +416,7 @@ dialog>.primary{width:100%;margin-top:18px}
       </section>
     </div>
   </main>
+  <dialog id="badges-dialog" aria-labelledby="badges-title"><button type="button" class="tool dialog-close" id="badges-close" aria-label="Закрыть">✕</button><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNyIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIj48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMSAwaDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTcgMGgydjFoLTJ6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTEgMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2VjOGQ0MCIgZD0iTTIgMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTMgMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTE2IDFoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik0xNyAxaDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTggMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTEgMmgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2VjOGQ0MCIgZD0iTTIgMmgydjFoLTJ6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTQgMmgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTE1IDJoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik0xNiAyaDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTggMmgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTEgM2gxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2Y0YjQ4MCIgZD0iTTIgM2gxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2VjOGQ0MCIgZD0iTTMgM2gydjFoLTJ6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTUgM2gxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTE0IDNoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik0xNSAzaDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjZjRiNDgwIiBkPSJNMTcgM2gxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTE4IDNoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xIDRoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNmNGI0ODAiIGQ9Ik0yIDRoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik00IDRoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik02IDRoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik04IDRoNHYxaC00eiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xMyA0aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZWM4ZDQwIiBkPSJNMTQgNGgydjFoLTJ6Ii8+PHBhdGggZmlsbD0iI2Y0YjQ4MCIgZD0iTTE2IDRoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xOCA0aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMSA1aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZjRiNDgwIiBkPSJNMiA1aDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjY2Q2YjM2IiBkPSJNNCA1aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZWM4ZDQwIiBkPSJNNSA1aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNNiA1aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZWM4ZDQwIiBkPSJNNyA1aDZ2MWgtNnoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTMgNWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2VjOGQ0MCIgZD0iTTE0IDVoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNjZDZiMzYiIGQ9Ik0xNSA1aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZjRiNDgwIiBkPSJNMTYgNWgydjFoLTJ6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTE4IDVoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0yIDZoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNjZDZiMzYiIGQ9Ik0zIDZoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik01IDZoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNmZmE5NTAiIGQ9Ik03IDZoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik04IDZoNHYxaC00eiIvPjxwYXRoIGZpbGw9IiNmZmE5NTAiIGQ9Ik0xMiA2aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZWM4ZDQwIiBkPSJNMTMgNmgydjFoLTJ6Ii8+PHBhdGggZmlsbD0iI2NkNmIzNiIgZD0iTTE1IDZoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xNyA2aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMiA3aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjY2Q2YjM2IiBkPSJNMyA3aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZWM4ZDQwIiBkPSJNNCA3aDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjZmZhOTUwIiBkPSJNNiA3aDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjZWM4ZDQwIiBkPSJNOCA3aDR2MWgtNHoiLz48cGF0aCBmaWxsPSIjZmZhOTUwIiBkPSJNMTIgN2gydjFoLTJ6Ii8+PHBhdGggZmlsbD0iI2VjOGQ0MCIgZD0iTTE0IDdoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNjZDZiMzYiIGQ9Ik0xNiA3aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTcgN2gxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTEgOGgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2NkNmIzNiIgZD0iTTIgOGgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2VjOGQ0MCIgZD0iTTMgOGgxNHYxaC0xNHoiLz48cGF0aCBmaWxsPSIjY2Q2YjM2IiBkPSJNMTcgOGgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTE4IDhoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0wIDloMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNjZDZiMzYiIGQ9Ik0xIDloMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik0yIDloNHYxaC00eiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik02IDloMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik04IDloNHYxaC00eiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xMiA5aDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjZWM4ZDQwIiBkPSJNMTQgOWg0djFoLTR6Ii8+PHBhdGggZmlsbD0iI2NkNmIzNiIgZD0iTTE4IDloMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xOSA5aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMSAxMGgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2NkNmIzNiIgZD0iTTIgMTBoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik0zIDEwaDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjZmZmMmQ5IiBkPSJNNSAxMGgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTYgMTBoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik04IDEwaDR2MWgtNHoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTIgMTBoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNmZmYyZDkiIGQ9Ik0xNCAxMGgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2VjOGQ0MCIgZD0iTTE1IDEwaDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjY2Q2YjM2IiBkPSJNMTcgMTBoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xOCAxMGgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTAgMTFoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNjZDZiMzYiIGQ9Ik0xIDExaDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjZmZmMmQ5IiBkPSJNMyAxMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2Y5ZTFiZCIgZD0iTTQgMTFoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik02IDExaDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZmZmMmQ5IiBkPSJNNyAxMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2Y5ZTFiZCIgZD0iTTggMTFoNHYxaC00eiIvPjxwYXRoIGZpbGw9IiNmZmYyZDkiIGQ9Ik0xMiAxMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTEzIDExaDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZjllMWJkIiBkPSJNMTQgMTFoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNmZmYyZDkiIGQ9Ik0xNiAxMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2NkNmIzNiIgZD0iTTE3IDExaDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTkgMTFoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xIDEyaDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjY2Q2YjM2IiBkPSJNMiAxMmgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2ZmZjJkOSIgZD0iTTMgMTJoNHYxaC00eiIvPjxwYXRoIGZpbGw9IiNmOWUxYmQiIGQ9Ik03IDEyaDZ2MWgtNnoiLz48cGF0aCBmaWxsPSIjZmZmMmQ5IiBkPSJNMTMgMTJoNHYxaC00eiIvPjxwYXRoIGZpbGw9IiNjZDZiMzYiIGQ9Ik0xNyAxMmgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTE4IDEyaDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMiAxM2gxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2Y5ZTFiZCIgZD0iTTMgMTNoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNmZmYyZDkiIGQ9Ik00IDEzaDN2MWgtM3oiLz48cGF0aCBmaWxsPSIjZjllMWJkIiBkPSJNNyAxM2gydjFoLTJ6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTkgMTNoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNmOWUxYmQiIGQ9Ik0xMSAxM2gydjFoLTJ6Ii8+PHBhdGggZmlsbD0iI2ZmZjJkOSIgZD0iTTEzIDEzaDN2MWgtM3oiLz48cGF0aCBmaWxsPSIjZjllMWJkIiBkPSJNMTYgMTNoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xNyAxM2gxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTMgMTRoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNmOWUxYmQiIGQ9Ik00IDE0aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZmZmMmQ5IiBkPSJNNSAxNGgydjFoLTJ6Ii8+PHBhdGggZmlsbD0iI2Y5ZTFiZCIgZD0iTTcgMTRoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik04IDE0aDR2MWgtNHoiLz48cGF0aCBmaWxsPSIjZjllMWJkIiBkPSJNMTIgMTRoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNmZmYyZDkiIGQ9Ik0xMyAxNGgydjFoLTJ6Ii8+PHBhdGggZmlsbD0iI2Y5ZTFiZCIgZD0iTTE1IDE0aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTYgMTRoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik00IDE1aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZjllMWJkIiBkPSJNNSAxNWgxMHYxaC0xMHoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTUgMTVoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik02IDE2aDh2MWgtOHoiLz48L3N2Zz4=" alt="" width="53" height="47"><h2 id="badges-title">Мои значки</h2><p class="badge-intro">Выполняй упражнения и собирай награды!</p><div id="badge-list" class="badge-list"></div><button type="button" class="primary" id="badges-done">Понятно</button></dialog>
   <dialog id="help-dialog" aria-labelledby="help-title">
     <button type="button" class="tool dialog-close" id="close-help" aria-label="Закрыть"><svg class="line"><use href="#close"/></svg></button>
     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNyIgc2hhcGUtcmVuZGVyaW5nPSJjcmlzcEVkZ2VzIj48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMSAwaDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTcgMGgydjFoLTJ6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTEgMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2VjOGQ0MCIgZD0iTTIgMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTMgMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTE2IDFoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik0xNyAxaDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTggMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTEgMmgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2VjOGQ0MCIgZD0iTTIgMmgydjFoLTJ6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTQgMmgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTE1IDJoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik0xNiAyaDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTggMmgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTEgM2gxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2Y0YjQ4MCIgZD0iTTIgM2gxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2VjOGQ0MCIgZD0iTTMgM2gydjFoLTJ6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTUgM2gxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTE0IDNoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik0xNSAzaDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjZjRiNDgwIiBkPSJNMTcgM2gxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTE4IDNoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xIDRoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNmNGI0ODAiIGQ9Ik0yIDRoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik00IDRoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik02IDRoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik04IDRoNHYxaC00eiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xMyA0aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZWM4ZDQwIiBkPSJNMTQgNGgydjFoLTJ6Ii8+PHBhdGggZmlsbD0iI2Y0YjQ4MCIgZD0iTTE2IDRoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xOCA0aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMSA1aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZjRiNDgwIiBkPSJNMiA1aDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjY2Q2YjM2IiBkPSJNNCA1aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZWM4ZDQwIiBkPSJNNSA1aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNNiA1aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZWM4ZDQwIiBkPSJNNyA1aDZ2MWgtNnoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTMgNWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2VjOGQ0MCIgZD0iTTE0IDVoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNjZDZiMzYiIGQ9Ik0xNSA1aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZjRiNDgwIiBkPSJNMTYgNWgydjFoLTJ6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTE4IDVoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0yIDZoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNjZDZiMzYiIGQ9Ik0zIDZoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik01IDZoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNmZmE5NTAiIGQ9Ik03IDZoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik04IDZoNHYxaC00eiIvPjxwYXRoIGZpbGw9IiNmZmE5NTAiIGQ9Ik0xMiA2aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZWM4ZDQwIiBkPSJNMTMgNmgydjFoLTJ6Ii8+PHBhdGggZmlsbD0iI2NkNmIzNiIgZD0iTTE1IDZoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xNyA2aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMiA3aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjY2Q2YjM2IiBkPSJNMyA3aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZWM4ZDQwIiBkPSJNNCA3aDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjZmZhOTUwIiBkPSJNNiA3aDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjZWM4ZDQwIiBkPSJNOCA3aDR2MWgtNHoiLz48cGF0aCBmaWxsPSIjZmZhOTUwIiBkPSJNMTIgN2gydjFoLTJ6Ii8+PHBhdGggZmlsbD0iI2VjOGQ0MCIgZD0iTTE0IDdoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNjZDZiMzYiIGQ9Ik0xNiA3aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTcgN2gxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTEgOGgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2NkNmIzNiIgZD0iTTIgOGgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2VjOGQ0MCIgZD0iTTMgOGgxNHYxaC0xNHoiLz48cGF0aCBmaWxsPSIjY2Q2YjM2IiBkPSJNMTcgOGgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTE4IDhoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0wIDloMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNjZDZiMzYiIGQ9Ik0xIDloMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik0yIDloNHYxaC00eiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik02IDloMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik04IDloNHYxaC00eiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xMiA5aDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjZWM4ZDQwIiBkPSJNMTQgOWg0djFoLTR6Ii8+PHBhdGggZmlsbD0iI2NkNmIzNiIgZD0iTTE4IDloMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xOSA5aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMSAxMGgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2NkNmIzNiIgZD0iTTIgMTBoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik0zIDEwaDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjZmZmMmQ5IiBkPSJNNSAxMGgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTYgMTBoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNlYzhkNDAiIGQ9Ik04IDEwaDR2MWgtNHoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTIgMTBoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNmZmYyZDkiIGQ9Ik0xNCAxMGgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2VjOGQ0MCIgZD0iTTE1IDEwaDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjY2Q2YjM2IiBkPSJNMTcgMTBoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xOCAxMGgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTAgMTFoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNjZDZiMzYiIGQ9Ik0xIDExaDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjZmZmMmQ5IiBkPSJNMyAxMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2Y5ZTFiZCIgZD0iTTQgMTFoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik02IDExaDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZmZmMmQ5IiBkPSJNNyAxMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2Y5ZTFiZCIgZD0iTTggMTFoNHYxaC00eiIvPjxwYXRoIGZpbGw9IiNmZmYyZDkiIGQ9Ik0xMiAxMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTEzIDExaDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZjllMWJkIiBkPSJNMTQgMTFoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNmZmYyZDkiIGQ9Ik0xNiAxMWgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2NkNmIzNiIgZD0iTTE3IDExaDJ2MWgtMnoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTkgMTFoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xIDEyaDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjY2Q2YjM2IiBkPSJNMiAxMmgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2ZmZjJkOSIgZD0iTTMgMTJoNHYxaC00eiIvPjxwYXRoIGZpbGw9IiNmOWUxYmQiIGQ9Ik03IDEyaDZ2MWgtNnoiLz48cGF0aCBmaWxsPSIjZmZmMmQ5IiBkPSJNMTMgMTJoNHYxaC00eiIvPjxwYXRoIGZpbGw9IiNjZDZiMzYiIGQ9Ik0xNyAxMmgxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTE4IDEyaDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMiAxM2gxdjFoLTF6Ii8+PHBhdGggZmlsbD0iI2Y5ZTFiZCIgZD0iTTMgMTNoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNmZmYyZDkiIGQ9Ik00IDEzaDN2MWgtM3oiLz48cGF0aCBmaWxsPSIjZjllMWJkIiBkPSJNNyAxM2gydjFoLTJ6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTkgMTNoMnYxaC0yeiIvPjxwYXRoIGZpbGw9IiNmOWUxYmQiIGQ9Ik0xMSAxM2gydjFoLTJ6Ii8+PHBhdGggZmlsbD0iI2ZmZjJkOSIgZD0iTTEzIDEzaDN2MWgtM3oiLz48cGF0aCBmaWxsPSIjZjllMWJkIiBkPSJNMTYgMTNoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik0xNyAxM2gxdjFoLTF6Ii8+PHBhdGggZmlsbD0iIzYyNDEyZCIgZD0iTTMgMTRoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNmOWUxYmQiIGQ9Ik00IDE0aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZmZmMmQ5IiBkPSJNNSAxNGgydjFoLTJ6Ii8+PHBhdGggZmlsbD0iI2Y5ZTFiZCIgZD0iTTcgMTRoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik04IDE0aDR2MWgtNHoiLz48cGF0aCBmaWxsPSIjZjllMWJkIiBkPSJNMTIgMTRoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiNmZmYyZDkiIGQ9Ik0xMyAxNGgydjFoLTJ6Ii8+PHBhdGggZmlsbD0iI2Y5ZTFiZCIgZD0iTTE1IDE0aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTYgMTRoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik00IDE1aDF2MWgtMXoiLz48cGF0aCBmaWxsPSIjZjllMWJkIiBkPSJNNSAxNWgxMHYxaC0xMHoiLz48cGF0aCBmaWxsPSIjNjI0MTJkIiBkPSJNMTUgMTVoMXYxaC0xeiIvPjxwYXRoIGZpbGw9IiM2MjQxMmQiIGQ9Ik02IDE2aDh2MWgtOHoiLz48L3N2Zz4=" alt="" width="53" height="47">
@@ -490,6 +496,62 @@ DISCLAIMER THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
 <script>
 (() => {
 "use strict";
+const badgeDefinitions = [
+  ["alphabet", "Знакомство с клавиатурой", "Напечатай все буквы"],
+  ["home", "Мастер среднего ряда", "Напечатай буквы среднего ряда"],
+  ["word", "Первое слово", "Напечатай первое слово"],
+  ["phrase", "Мастер фраз", "Заверши упражнение с фразами"],
+  ["targets", "Меткий глаз", "Попади в пять мишеней"],
+  ["reaction", "Быстрый зайчик", "Заверши игру на реакцию"]
+];
+function readBadges() {
+  try { return JSON.parse(localStorage.getItem("klavolis.badges") || "{}"); } catch { return {}; }
+}
+function awardBadge(id) {
+  const badges = readBadges();
+  if (badges[id]) return;
+  badges[id] = true;
+  try { localStorage.setItem("klavolis.badges", JSON.stringify(badges)); } catch {}
+}
+function initRewards() {
+  const dialog = document.getElementById("badges-dialog");
+  document.getElementById("badges-open").addEventListener("click", () => {
+    const badges = readBadges();
+    const list = document.getElementById("badge-list");
+    list.replaceChildren();
+    for (const [id, title, description] of badgeDefinitions) {
+      const card = document.createElement("div");
+      card.className = "badge-card";
+      const icon = document.createElement("span");
+      icon.textContent = badges[id] ? "🏅" : "🌱";
+      const text = document.createElement("div");
+      const name = document.createElement("strong");
+      name.textContent = title;
+      const hint = document.createElement("small");
+      hint.textContent = badges[id] ? "Получен!" : description;
+      text.append(name, hint);
+      card.append(icon, text);
+      list.append(card);
+    }
+    dialog.showModal();
+  });
+  for (const id of ["badges-close", "badges-done"]) document.getElementById(id).addEventListener("click", () => dialog.close());
+  const toggle = document.getElementById("motion-toggle");
+  let reduced = false;
+  try { reduced = localStorage.getItem("klavolis.reducedMotion") === "true"; } catch {}
+  function renderMotion() {
+    document.body.classList.toggle("reduce-motion", reduced);
+    toggle.setAttribute("aria-pressed", String(!reduced));
+    toggle.textContent = reduced ? "Анимация выкл." : "Анимация вкл.";
+  }
+  toggle.addEventListener("click", () => {
+    reduced = !reduced;
+    try { localStorage.setItem("klavolis.reducedMotion", String(reduced)); } catch {}
+    renderMotion();
+  });
+  renderMotion();
+}
+
 const alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
 
 const rows = {
@@ -604,6 +666,7 @@ function initMouseTrainer() {
   let page = "typing";
   let game = "targets";
   let mode = "time";
+  let size = "large";
   let running = false;
   let hits = 0;
   let misses = 0;
@@ -652,6 +715,7 @@ function initMouseTrainer() {
     for (const id of ["reaction-last", "reaction-best", "reaction-avg"]) byId(id).textContent = "—";
     const isTargets = game === "targets";
     byId("target-modes").hidden = !isTargets;
+    byId("target-sizes").hidden = !isTargets;
     byId("target-stats").hidden = !isTargets;
     byId("reaction-stats").hidden = isTargets;
     byId("mouse-title").textContent = isTargets ? "Попади в мишень" : "Поймай зверька";
@@ -771,6 +835,12 @@ function initMouseTrainer() {
     toggleButtons(modeButtons, "targetMode", mode);
     resetDisplay();
   }));
+  document.querySelectorAll("[data-size]").forEach(button => button.addEventListener("click", () => {
+    size = button.dataset.size;
+    document.querySelectorAll("[data-size]").forEach(choice => choice.classList.toggle("active", choice === button));
+    target.classList.toggle("small-target", size === "small");
+    resetDisplay();
+  }));
   byId("mouse-start").addEventListener("click", startGame);
   target.addEventListener("click", event => {
     event.stopPropagation();
@@ -780,6 +850,7 @@ function initMouseTrainer() {
       return;
     }
     hits++;
+    if (hits >= 5) awardBadge("targets");
     byId("hits").textContent = String(hits);
     placeTarget();
   });
@@ -813,6 +884,7 @@ function initMouseTrainer() {
     byId("reaction-best").textContent = format(Math.min(...times));
     byId("reaction-avg").textContent = format(times.reduce((sum, time) => sum + time, 0) / times.length);
     if (times.length === 5) {
+      awardBadge("reaction");
       stopTimers();
       animal.hidden = true;
       overlay.hidden = false;
@@ -874,6 +946,8 @@ const state = {
   row: known(rows, prefs.row) ? prefs.row : "all",
   sound: prefs.sound === true
 };
+let letterDisplay = "one";
+try { letterDisplay = localStorage.getItem("klavolis.display") || "one"; } catch {}
 let items = [];
 let total = 0;
 let current = null;
@@ -1006,9 +1080,35 @@ function prepare() {
   items = makeExercise(state.mode, state.row, session.round, session.seed);
   total = items.join("").length;
   renderChoices();
+  byId("letter-display").hidden = state.mode !== "letters";
   render();
 }
+const fingerGroups = [
+  ["left-little", "Левый мизинец", "ёйфя"],
+  ["left-ring", "Левый безымянный", "цыч"],
+  ["left-middle", "Левый средний", "увс"],
+  ["left-index", "Левый указательный", "кепам"],
+  ["right-index", "Правый указательный", "нгроти"],
+  ["right-middle", "Правый средний", "шль"],
+  ["right-ring", "Правый безымянный", "щдб"],
+  ["right-little", "Правый мизинец", "зхъжэю"],
+  ["right-thumb", "Правый большой палец", " "]
+];
+function renderFinger() {
+  const entry = current && fingerGroups.find(group => group[2].includes(current.expected));
+  document.querySelectorAll("[data-finger]").forEach(finger => finger.classList.toggle("finger-active", !!entry && finger.dataset.finger === entry[0]));
+  byId("finger-label").textContent = entry ? entry[1] + (current.expected === " " ? " — пробел" : " — буква " + current.expected.toUpperCase()) : "";
+}
+byId("hands-toggle").addEventListener("click", () => {
+  const showing = byId("hands-help").hidden;
+  byId("hands-help").hidden = !showing;
+  byId("hands-toggle").setAttribute("aria-pressed", String(showing));
+  byId("hands-toggle").textContent = showing ? "Скрыть руки" : "Показать руки";
+  renderFinger();
+  byId("exercise").focus({preventScroll: true});
+});
 function renderKeys() {
+  renderFinger();
   for (const [char, button] of keyButtons) {
     const needed = current?.expected === char;
     const outside = state.row !== "all" && char !== " " && !rows[state.row].includes(char);
@@ -1030,8 +1130,9 @@ function renderPrompt() {
   prompt.className = isLetters ? "prompt" : "prompt reading";
   prompt.setAttribute("role", "img");
   if (isLetters) {
-    const first = Math.floor(offset / 7) * 7;
-    const visible = item.slice(first, first + 7).toUpperCase();
+    const size = letterDisplay === "one" ? 1 : 7;
+    const first = Math.floor(offset / size) * size;
+    const visible = item.slice(first, first + size).toUpperCase();
     prompt.setAttribute("aria-label", "Буквы " + [...visible].join(" "));
     [...visible].forEach((char, index) => {
       const tile = document.createElement("span");
@@ -1123,6 +1224,8 @@ function enter(char) {
     }, 1400);
     return;
   }
+  const completedItem = current.offset === current.item.length - 1;
+  if (completedItem && state.mode === "words") awardBadge("word");
   const session = getSession();
   session.position += 1;
   saveSession();
@@ -1130,6 +1233,9 @@ function enter(char) {
   if (current) sound("key");
   else {
     updateStars();
+    if (state.mode === "letters" && state.row === "all") awardBadge("alphabet");
+    if (state.mode === "letters" && state.row === "home") awardBadge("home");
+    if (state.mode === "phrases") awardBadge("phrase");
     sound("finish");
     byId("next").focus({ preventScroll: true });
   }
@@ -1179,7 +1285,7 @@ help.addEventListener("click", event => {
 help.addEventListener("close", () => byId("exercise").focus({ preventScroll: true }));
 
 document.addEventListener("keydown", event => {
-  if (!current || !byId("mouse-page").hidden || help.open || event.defaultPrevented || event.isComposing || event.metaKey || event.ctrlKey || event.altKey) return;
+  if (!current || !byId("mouse-page").hidden || help.open || byId("badges-dialog").open || event.defaultPrevented || event.isComposing || event.metaKey || event.ctrlKey || event.altKey) return;
   const target = event.target;
   if (target instanceof HTMLElement && (target.isContentEditable || target.matches("input, textarea, select"))) return;
   if (event.key === " " && target instanceof HTMLElement && target.closest("button, a[href]")) return;
@@ -1198,6 +1304,25 @@ window.addEventListener("storage", event => {
   updateStars();
 });
 
+document.querySelectorAll("[data-display]").forEach(button => {
+  button.addEventListener("click", () => {
+    letterDisplay = button.dataset.display;
+    try { localStorage.setItem("klavolis.display", letterDisplay); } catch {}
+    document.querySelectorAll("[data-display]").forEach(choice => {
+      const selected = choice.dataset.display === letterDisplay;
+      choice.classList.toggle("selected", selected);
+      choice.setAttribute("aria-pressed", String(selected));
+    });
+    render();
+    byId("exercise").focus({ preventScroll: true });
+  });
+});
+document.querySelectorAll("[data-display]").forEach(choice => {
+  const selected = choice.dataset.display === letterDisplay;
+  choice.classList.toggle("selected", selected);
+  choice.setAttribute("aria-pressed", String(selected));
+});
+initRewards();
 buildKeyboard();
 renderSound();
 updateStars();
